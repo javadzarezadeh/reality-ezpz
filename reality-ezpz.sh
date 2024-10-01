@@ -38,8 +38,8 @@ HEIGHT=30
 WIDTH=60
 CHOICE_HEIGHT=20
 
-image[xray]="ghcr.io/xtls/xray-core:24.9.30"
-image[sing-box]="ghcr.io/sagernet/sing-box:v1.9.6"
+image[xray]="teddysun/xray:24.9.30"
+image[sing-box]="gzxhwq/sing-box:v1.9.6"
 image[nginx]="nginx:1"
 image[certbot]="certbot/certbot:v2.11.0"
 image[haproxy]="haproxy:3.0"
@@ -665,7 +665,7 @@ function update_users_file {
 
 function generate_keys {
   local key_pair
-  key_pair=$(docker run --rm ${image[xray]} x25519)
+  key_pair=$(docker run --rm ${image[xray]} xray x25519)
   config_file[public_key]=$(echo "${key_pair}" | grep 'Public key:' | awk '{print $3}')
   config_file[private_key]=$(echo "${key_pair}" | grep 'Private key:' | awk '{print $3}')
   config_file[short_id]=$(openssl rand -hex 8)
