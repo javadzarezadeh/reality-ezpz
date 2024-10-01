@@ -665,7 +665,7 @@ function update_users_file {
 
 function generate_keys {
   local key_pair
-  key_pair=$(docker run --rm ${image[xray]} xray x25519)
+  key_pair=$(docker run --rm ${image[xray]} x25519)
   config_file[public_key]=$(echo "${key_pair}" | grep 'Public key:' | awk '{print $3}')
   config_file[private_key]=$(echo "${key_pair}" | grep 'Private key:' | awk '{print $3}')
   config_file[short_id]=$(openssl rand -hex 8)
